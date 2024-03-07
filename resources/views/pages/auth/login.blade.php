@@ -26,8 +26,11 @@
             <div class="d-flex align-items-stretch flex-wrap">
                 <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
                     <div class="m-3 p-4">
-                        <img src="{{ asset('img/logo-toko.png   ') }}" alt="logo" width="100"
-                            class="  mb-5 mt-2">
+                        <div class="d-flex justify-content-between"> <img src="{{ asset('img/logo-toko.png   ') }}"
+                                alt="logo" width="100" class="  mb-5 mt-2">
+                            <p>{{ $qrCode }}</p>
+                        </div>
+
                         <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Dapoer
                                 Dindra</span>
                         </h4>
@@ -92,7 +95,7 @@
                     <div class="absolute-bottom-left index-2">
                         <div class="text-light p-5 pb-2">
                             <div class="mb-5 pb-3">
-                                <p>{{ $qrCode }}</p>
+
                                 <h1 class="display-4 font-weight-bold mb-2">Good Morning</h1>
                                 <h5 class="font-weight-normal text-muted-transparent">Gorontalo, Indonesia</h5>
                             </div>
