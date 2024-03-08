@@ -36,11 +36,12 @@ return [
             'throw' => false,
         ],
 
-        'root_public' => [
+        'public' => [
             'driver' => 'local',
-            'root' => public_path('/'),
-            'url' => env('APP_URL'),
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [
