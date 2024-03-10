@@ -152,7 +152,7 @@
             }
 
             // Check for changes every 5 seconds (adjust the interval as needed)
-            setInterval(checkForChanges, 20000);
+            setInterval(checkForChanges, 60000);
         });
 
 
