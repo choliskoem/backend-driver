@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,5 +18,11 @@ class UserController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
         return view('pages.users.index', compact('users'));
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('user.index')->with('success', 'User Deleted Successfully');
     }
 }
