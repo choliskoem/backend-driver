@@ -15,7 +15,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('no_hp')->unique();
+            $table->string('plat_no')->unique();
             $table->string('image');
+            $table->string('foto');
             // $table->string('email')->unique();
             $table->timestamp('no_hp_verified_at')->nullable();
             $table->string('password');

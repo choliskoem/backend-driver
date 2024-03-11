@@ -26,13 +26,18 @@ class RegisterController extends Controller
         $filename = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/verifikasi', $filename);
 
+        $filename2 = time() . '.' . $request->foto->extension();
+        $request->foto->storeAs('public/foto', $filename2);
+
 
 
         User::create([
             'id' => Uuid::uuid4()->toString(),
             'name' => $request->name,
             'no_hp' => $request->nomor,
+            'plat_no' => $request->plat,
             'image' => $filename,
+            'foto'  => $filename2,
             'roles' => 'Admin',
             'password' => Hash::make($request->password),
         ]);

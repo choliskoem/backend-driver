@@ -28,7 +28,10 @@ class User extends Authenticatable
         'id',
         'name',
         'no_hp',
+        'plat_no',
         'image',
+        
+        'foto',
         'roles',
         'password'
 

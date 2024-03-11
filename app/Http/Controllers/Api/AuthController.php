@@ -34,7 +34,9 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
+            'plat_no' => 'required|string|max:255',
             'image' => 'required|image|mimes:png,jpg,jpeg',
+            'foto' => 'required|image|mimes:png,jpg,jpeg',
             'password' => 'required|string|min:8',
 
 
@@ -46,13 +48,18 @@ class AuthController extends Controller
         $filename = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/verifikasi', $filename);
 
+        $filename2 = time() . '.' . $request->foto->extension();
+        $request->foto->storeAs('public/foto', $filename2);
+
 
 
         $user =  User::create([
             'id' => Uuid::uuid4()->toString(),
             'name' => $request->name,
             'no_hp' => $request->no_hp,
+            'plat_no' => $request->plat_no,
             'image' => $filename,
+            'foto'  => $filename2,
             'roles' => 'Driver',
             'password' => Hash::make($request->password),
         ]);

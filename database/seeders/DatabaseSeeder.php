@@ -37,7 +37,9 @@ class DatabaseSeeder extends Seeder
 
             'roles' => 'Admin',
             'image' => 'https://picsum.photos/200/300',
+            'foto' =>'https://picsum.photos/200/300',
             'no_hp' => '08123456789',
+            'plat_no' => 'B 1234 C',
             'password' => Hash::make('123456789'),
 
         ]);
@@ -48,7 +50,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Driver Ojol',
             'roles' => 'Driver',
             'image' => 'https://picsum.photos/200/300',
+            'foto' =>'https://picsum.photos/200/300',
             'no_hp' => '03123131311',
+            'plat_no' => 'B 1235 C',
             'password' => Hash::make('123456789'),
 
         ]);
