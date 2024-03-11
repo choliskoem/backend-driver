@@ -77,7 +77,24 @@
                         </div>
                     @enderror
                 </div>
-                
+
+                <div class="form-group  ">
+                    <label for="">
+                      Foto Wajah
+                    </label>
+                    <div class="col-md-12">
+                        <input type="file" class="form-control" name="foto"
+                            @error('foto')
+                            is-invalid
+                        @enderror>
+                    </div>
+                    @error('foto')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="form-group ">
                     <label for="password" class="d-block">Password</label>
                     <input id="password" type="password"
