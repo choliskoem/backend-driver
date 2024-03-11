@@ -48,7 +48,7 @@ class AuthController extends Controller
         $filename = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/verifikasi', $filename);
 
-        $filename2 = $uuid .  '.' . $request->foto->extension();
+        $filename2 = time() .  '.' . $request->foto->extension();
         $request->foto->storeAs('public/foto', $filename2);
 
 
