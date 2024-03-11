@@ -153,9 +153,7 @@ class AuthController extends Controller
             ], 403); // Forbidden status code
         }
 
-        if ($currentDateTime->dayOfWeek >= Carbon::TUESDAY && $currentDateTime->hour >= 05) {
-            scandriver::truncate();
-        }
+      
 
         $qrcode = qrcode::where('id', $request->qrcode_id)->first();
 
