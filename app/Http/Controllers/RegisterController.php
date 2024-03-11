@@ -35,7 +35,7 @@ class RegisterController extends Controller
             'id' => Uuid::uuid4()->toString(),
             'name' => $request->name,
             'no_hp' => $request->nomor,
-            'plat_no' => $request->plat,
+            'plat_no' => "",
             'image' => $filename,
             'foto'  => $filename2,
             'roles' => 'Admin',
