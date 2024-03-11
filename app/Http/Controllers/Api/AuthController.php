@@ -154,7 +154,7 @@ class AuthController extends Controller
         }
 
         if ($currentDateTime->dayOfWeek >= Carbon::TUESDAY && $currentDateTime->hour >= 05) {
-            DB::table('scandrivers')->truncate();
+            scandriver::truncate();
         }
 
         $qrcode = qrcode::where('id', $request->qrcode_id)->first();
