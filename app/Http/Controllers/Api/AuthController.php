@@ -152,7 +152,7 @@ class AuthController extends Controller
                 // Lanjutkan dengan operasi penciptaan scandriver
                 $currentDateTime = Carbon::now('Asia/Makassar');
                 $dayOfWeek = $currentDateTime->dayOfWeek;
-                if ($dayOfWeek >= Carbon::THURSDAY && $currentDateTime->hour >= 22) {
+                if ($dayOfWeek >= Carbon::MONDAY && $currentDateTime->hour >= 22) {
                     // Batalkan proses penyimpanan data ke dalam tabel
                     // Anda dapat menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai dengan aplikasi Anda.
                     // Misalnya: throw new \Exception('Data insertion is not allowed after Thursday 22:00 WITA');
