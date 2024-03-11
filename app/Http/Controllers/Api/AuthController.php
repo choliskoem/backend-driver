@@ -48,13 +48,13 @@ class AuthController extends Controller
         $filename = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/verifikasi', $filename);
 
-        $filename2 = time() . '.' . $request->foto->extension();
+        $filename2 = $uuid .  '.' . $request->foto->extension();
         $request->foto->storeAs('public/foto', $filename2);
 
 
 
         $user =  User::create([
-            'id' => Uuid::uuid4()->toString(),
+            'id' => $uuid,
             'name' => $request->name,
             'no_hp' => $request->no_hp,
             'plat_no' => $request->plat_no,
