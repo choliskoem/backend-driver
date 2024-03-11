@@ -145,7 +145,7 @@ class AuthController extends Controller
     {
         // Check if it's past Thursday 22:00 WITA
         $currentDateTime = Carbon::now()->setTimezone('Asia/Makassar'); // Assuming WITA timezone
-        if ($currentDateTime->dayOfWeek >= Carbon::TUESDAY && $currentDateTime->hour >= 05) {
+        if ($currentDateTime->dayOfWeek >= Carbon::THURSDAY && $currentDateTime->hour >= 22) {
             return response()->json([
                 'success' => false,
                 'message' => 'Data cannot be inserted after Thursday 22:00 WITA',
