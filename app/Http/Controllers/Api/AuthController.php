@@ -150,29 +150,42 @@ class AuthController extends Controller
             // Memeriksa apakah QR code cocok
             if ($qrcode->id === $request->qrcode_id) {
                 // Lanjutkan dengan operasi penciptaan scandriver
-                $scan = scandriver::create([
-                    'qrcode_id' => $request->qrcode_id,
-                    'driver_id' => $request->driver_id,
-                ]);
-
-                // Menghapus QR code dari tabel qrcode
-                qrcode::where('id', $request->qrcode_id)->delete();
-
-                qrcode::create([
-                    'id' => Uuid::uuid4()->toString(),
-                ]);
-
-                if ($scan) {
-                    return response()->json([
-                        'success' => true,
-                        'message' => 'Data Berhasil Ditambahkan',
-                        'data' => $scan
-                    ], 202);
-                } else {
+                $currentDateTime = Carbon::now('Asia/Makassar');
+                $dayOfWeek = $currentDateTime->dayOfWeek;
+                if ($dayOfWeek >= Carbon::THURSDAY && $currentDateTime->hour >= 22) {
+                    // Batalkan proses penyimpanan data ke dalam tabel
+                    // Anda dapat menampilkan pesan kesalahan atau melakukan tindakan lain yang sesuai dengan aplikasi Anda.
+                    // Misalnya: throw new \Exception('Data insertion is not allowed after Thursday 22:00 WITA');
                     return response()->json([
                         'success' => false,
-                        'message' => 'Data Gagal Ditambahkan',
+                        'message' => 'Waktu Sudah Habis',
                     ], 409);
+                } else {
+
+                    $scan = scandriver::create([
+                        'qrcode_id' => $request->qrcode_id,
+                        'driver_id' => $request->driver_id,
+                    ]);
+
+                    // Menghapus QR code dari tabel qrcode
+                    qrcode::where('id', $request->qrcode_id)->delete();
+
+                    qrcode::create([
+                        'id' => Uuid::uuid4()->toString(),
+                    ]);
+
+                    if ($scan) {
+                        return response()->json([
+                            'success' => true,
+                            'message' => 'Data Berhasil Ditambahkan',
+                            'data' => $scan
+                        ], 202);
+                    } else {
+                        return response()->json([
+                            'success' => false,
+                            'message' => 'Data Gagal Ditambahkan',
+                        ], 409);
+                    }
                 }
             } else {
                 // QR code tidak cocok, kembalikan respons yang sesuai

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Events\QueryExecuted;
 
 class scandriver extends Model
 {
@@ -16,6 +18,12 @@ class scandriver extends Model
 
         'qrcode_id',
         'driver_id',
-    
+
+    ];
+
+    protected $listen = [
+        QueryExecuted::class => [
+            AuthController::class,
+        ],
     ];
 }
