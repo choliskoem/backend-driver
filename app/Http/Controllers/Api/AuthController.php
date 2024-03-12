@@ -239,6 +239,7 @@ class AuthController extends Controller
             ->select('u.name', DB::raw('COUNT(s.driver_id) as point'), 'u.id')
             ->groupBy('u.name', 'u.id')
             ->orderByDesc('point')
+            ->limit(5)
             ->get();
 
 
