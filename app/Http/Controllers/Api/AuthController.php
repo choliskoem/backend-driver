@@ -8,6 +8,7 @@ use App\Models\qrcode;
 use App\Models\scandriver;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -29,53 +30,53 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $request->validate([
             'name' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:255',
+            'no_hp' => 'required|string|max:255|unique:users', // Add unique rule here
             'plat_no' => 'required|string|max:255',
             'image' => 'required|image|mimes:png,jpg,jpeg',
             'foto' => 'required|image|mimes:png,jpg,jpeg',
             'password' => 'required|string|min:8',
-
-
         ]);
 
+        try {
+            $uuid = Uuid::uuid4()->toString();
+            $filename = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/verifikasi', $filename);
 
+            $filename2 = time() .  '.' . $request->foto->extension();
+            $request->foto->storeAs('public/foto', $filename2);
 
-        $uuid = Uuid::uuid4()->toString();
-        $filename = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/verifikasi', $filename);
+            $user =  User::create([
+                'id' => $uuid,
+                'name' => $request->name,
+                'no_hp' => $request->no_hp,
+                'plat_no' => $request->plat_no,
+                'image' => $filename,
+                'foto'  => $filename2,
+                'roles' => 'Driver',
+                'password' => Hash::make($request->password),
+            ]);
 
-        $filename2 = time() .  '.' . $request->foto->extension();
-        $request->foto->storeAs('public/foto', $filename2);
-
-
-
-        $user =  User::create([
-            'id' => $uuid,
-            'name' => $request->name,
-            'no_hp' => $request->no_hp,
-            'plat_no' => $request->plat_no,
-            'image' => $filename,
-            'foto'  => $filename2,
-            'roles' => 'Driver',
-            'password' => Hash::make($request->password),
-        ]);
-
-        if ($user) {
             return response()->json([
                 'success' => true,
-                'message' => 'Data Berhasil Ditambahakan',
-
+                'message' => 'Data Berhasil Ditambahkan',
                 'register' => $user
             ], 201);
-        } else {
+        } catch (QueryException $e) {
+            if ($e->errorInfo[1] == 1062) { // MySQL error code for duplicate entry
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Nomor HP sudah digunakan.',
+                ], 409);
+            }
+
+            // Handle other database errors if needed
+
             return response()->json([
                 'success' => false,
-                'message' => 'Data Gagal Ditambahkan',
-            ], 409);
+                'message' => 'Terjadi kesalahan pada server.',
+            ], 500);
         }
     }
 
@@ -153,7 +154,7 @@ class AuthController extends Controller
             ], 403); // Forbidden status code
         }
 
-      
+
 
         $qrcode = qrcode::where('id', $request->qrcode_id)->first();
 
