@@ -231,7 +231,29 @@ class AuthController extends Controller
     {
     }
 
-    public function checkqr(Request $request)
+    public function hasildriver(Request $request)
     {
+
+        $users = DB::table('users as u')
+            ->leftJoin('scandrivers as s', 's.driver_id', '=', 'u.id')
+            ->select('u.name', DB::raw('COUNT(s.driver_id) as point'), 'u.id')
+            ->groupBy('u.name', 'u.id')
+            ->orderByDesc('point')
+            ->get();
+
+
+            if ($users) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Hasil Perolehan',
+                    'data' => $users
+                ], 205);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Hasil Not Found',
+                    'data' => null
+                ], 404);
+            }
     }
 }

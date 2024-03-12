@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::get('driver/{id}', [AuthController::class, 'drivers'])->middleware('auth:sanctum');
+Route::get('hasildriver', [AuthController::class, 'hasildriver']);
+
 Route::get('checkqr', [AuthController::class, 'checkqr']);
 Route::post('addlogin', [App\Http\Controllers\Api\AuthController::class, 'store']);
 Route::post('addscanner', [App\Http\Controllers\Api\AuthController::class, 'scanner'])->middleware('auth:sanctum');
