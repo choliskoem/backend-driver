@@ -31,6 +31,8 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
+        ini_set('post_max_size', '20M');
+        ini_set('upload_max_filesize', '20M');
         $request->validate([
             'name' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255|unique:users', // Add unique rule here
