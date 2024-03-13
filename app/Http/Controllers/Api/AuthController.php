@@ -238,6 +238,7 @@ class AuthController extends Controller
         $users = DB::table('users as u')
             ->leftJoin('scandrivers as s', 's.driver_id', '=', 'u.id')
             ->select('u.name', DB::raw('COUNT(s.driver_id) as point'), 'u.id')
+            ->where('u.roles', 'Driver')
             ->groupBy('u.name', 'u.id')
             ->orderByDesc('point')
             ->limit(5)
