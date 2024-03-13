@@ -9,7 +9,6 @@ use App\Models\scandriver;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
-use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -31,15 +30,15 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:255|unique:users',
+            'no_hp' => 'required|string|max:255|unique:users', // Add unique rule here
             'plat_no' => 'required|string|max:255',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:1024',
-            'foto' => 'required|image|mimes:png,jpg,jpeg|max:1024',
+            'image' => 'required|image|mimes:png,jpg,jpeg:max:1024',
+            'foto' => 'required|image|mimes:png,jpg,jpeg:max:1024',
             'password' => 'required|string|min:8',
         ]);
+
 
         try {
             $uuid = Uuid::uuid4()->toString();
@@ -79,11 +78,6 @@ class AuthController extends Controller
                 'success' => false,
                 'message' => 'Terjadi kesalahan pada server.',
             ], 500);
-        } catch (PostTooLargeException $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'File terlalu besar. Maksimum ukuran file adalah 1 MB.',
-            ], 413); // HTTP 413 Payload Too Large
         }
     }
 
