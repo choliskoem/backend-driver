@@ -34,8 +34,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255|unique:users', // Add unique rule here
             'plat_no' => 'required|string|max:255',
-            'image' => 'required|image|mimes:png,jpg,jpeg',
-            'foto' => 'required|image|mimes:png,jpg,jpeg',
+            'image' => 'required|image|mimes:png,jpg,jpeg:max:1024',
+            'foto' => 'required|image|mimes:png,jpg,jpeg:max:1024',
             'password' => 'required|string|min:8',
         ]);
 
@@ -243,18 +243,18 @@ class AuthController extends Controller
             ->get();
 
 
-            if ($users) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Hasil Perolehan',
-                    'data' => $users
-                ], 205);
-            } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Hasil Not Found',
-                    'data' => null
-                ], 404);
-            }
+        if ($users) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Hasil Perolehan',
+                'data' => $users
+            ], 205);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Hasil Not Found',
+                'data' => null
+            ], 404);
+        }
     }
 }
