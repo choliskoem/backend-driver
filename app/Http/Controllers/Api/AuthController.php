@@ -250,7 +250,7 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'Hasil Perolehan',
                 'data' => $users
-            ], 205);
+            ], 200);
         } else {
             return response()->json([
                 'success' => false,
