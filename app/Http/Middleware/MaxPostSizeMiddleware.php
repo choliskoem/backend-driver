@@ -15,8 +15,9 @@ class MaxPostSizeMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        ini_set('post_max_size', '20M');
-        ini_set('upload_max_filesize', '20M');
+        ini_set('max_execution_time','300');
+        ini_set('upload_max_size','1024M');
+        ini_set('post_max_size','1024M');
         return $next($request);
     }
 }
