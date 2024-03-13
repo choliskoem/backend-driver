@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::get('/php', [LoginController::class, 'php'])->name('php');
 // Route::get('/', [LoginController::class, 'show']);
 Route::get('/check', [LoginController::class, 'latestData'])->name('latest.data');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

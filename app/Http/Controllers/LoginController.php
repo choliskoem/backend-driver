@@ -14,10 +14,10 @@ class LoginController extends Controller
     public function index()
     {
         $qr = DB::table('qrcodes')
-        ->select('id')
-        ->first();
+            ->select('id')
+            ->first();
 
-    $qrCode = QrCode::size(100)->generate($qr->id);
+        $qrCode = QrCode::size(100)->generate($qr->id);
         return view('pages.auth.login', compact('qrCode'));
     }
 
@@ -62,12 +62,17 @@ class LoginController extends Controller
         $now = now()->toDateTimeString();
 
         $hasChanges = DB::table('scandrivers')
-        ->where('waktu', DB::raw('NOW()'))
-        ->first();
+            ->where('waktu', DB::raw('NOW()'))
+            ->first();
         // $latestData = scandriver::latest()->first();
         // $hasChanges = DB;
 
         return response()->json(['reload' => $hasChanges]);
         // return view('pages.auth.login', compact('latestData'));
     }
+
+    public function php()
+    {
+
+        return view('welcome');}
 }
