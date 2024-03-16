@@ -16,6 +16,7 @@ class DriverController extends Controller
             ->select('u.name', DB::raw('COUNT(s.driver_id) as point'))
             ->groupBy('u.name')
             ->where('u.roles', 'Driver')
+            ->orderByDesc('point')
             ->paginate(10);
         return view('pages.driver.index', compact('users'));
     }
