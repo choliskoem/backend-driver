@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -35,4 +36,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::resource('user', UserController::class);
     Route::resource('driver', DriverController::class);
+    Route::resource('backup', BackupController::class);
 });
