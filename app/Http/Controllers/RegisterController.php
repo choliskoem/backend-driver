@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Akun;
 use App\Models\biodata;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,31 +18,44 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi data yang masuk
         $request->validate([
-            'name' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
+            // 'kd_akun' => 'required|string|max:255|unique:t_akun,kd_akun',
+            'username' => 'required|string|max:255',
+            // 'password' => 'required|string|min:8|confirmed',
+            // 'id_type_fb' => 'required|exists:t_type,id_type',
+            // 'id_type_ig' => 'required|exists:t_type,id_type',
+            // 'id_level' => 'required|exists:t_level,id_level',
+            // 'foto_fb' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'foto_ig' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'status' => 'required|boolean',
         ]);
 
+        // Generate UUID
         $uuid = Uuid::uuid4()->toString();
-        $filename = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/verifikasi', $filename);
 
-        $filename2 = time() . '.' . $request->foto->extension();
-        $request->foto->storeAs('public/foto', $filename2);
+        // Simpan foto_fb
+        $fotoFbFilename = time() . '_fb.' . $request->foto_fb->extension();
+        $request->foto_fb->storeAs('public/foto_fb', $fotoFbFilename);
 
+        // Simpan foto_ig
+        $fotoIgFilename = time() . '_ig.' . $request->foto_ig->extension();
+        $request->foto_ig->storeAs('public/foto_ig', $fotoIgFilename);
 
-
+        // Simpan data ke database
         User::create([
-            'id' => Uuid::uuid4()->toString(),
+            'id_akun' => $uuid,
             'name' => $request->name,
-            'no_hp' => $request->nomor,
-            'plat_no' => "",
-            'image' => $filename,
-            'foto'  => $filename2,
-            'roles' => 'Admin',
+            'username' => $request->nomor,
             'password' => Hash::make($request->password),
+            'id_type_fb' => '1',
+            'id_type_ig' => '2',
+            'id_level' => '2',
+            'foto_fb' => $fotoFbFilename,
+            'foto_ig' => $fotoIgFilename,
+            'status' => 'Belum Aktif',
         ]);
 
-        return redirect('/')->with('success', 'Registration successful!');
+        return redirect('/')->with('success', 'Akun berhasil dibuat!');
     }
 }

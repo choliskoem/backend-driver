@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class LoginController extends Controller
@@ -21,24 +22,35 @@ class LoginController extends Controller
         return view('pages.auth.login', compact('qrCode'));
     }
 
-    public function proses_login(Request $request): RedirectResponse
+    public function proses_login(Request $request)
     {
         $credentials = $request->validate([
-            'no_hp' => ['required'],
+            'username' => ['required'],
             'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if ($user->status !== 'Aktif') {
+                Auth::logout();
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Akun Anda belum aktif.'
+                ]);
+            }
+
             $request->session()->regenerate();
-
-            return redirect()->intended('/dashboard');
+            return response()->json([
+                'success' => true,
+                'message' => 'Login berhasil'
+            ]);
         } else {
-            return redirect('/')->with('error', 'Login Gagal');
+            return response()->json([
+                'success' => false,
+                'message' => 'Username Atau Password Salah'
+            ]);
         }
-
-        // return back()->withErrors([
-        //     'email' => 'The provided credentials do not match our records.',
-        // ])->onlyInput('email');
     }
     public function logout()
     {
@@ -74,5 +86,6 @@ class LoginController extends Controller
     public function php()
     {
 
-        return view('welcome');}
+        return view('welcome');
+    }
 }

@@ -32,31 +32,36 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:255|unique:users', // Add unique rule here
-            'plat_no' => 'required|string|max:255',
-            'image' => 'required|image|mimes:png,jpg,jpeg:max:1024',
-            'foto' => 'required|image|mimes:png,jpg,jpeg:max:1024',
+            'username' => 'required|string|max:255|unique:users', // Add unique rule here
+            // 'plat_no' => 'required|string|max:255',
+            'foto_fb' => 'required|image|mimes:png,jpg,jpeg:max:1024',
+            'foto_ig' => 'required|image|mimes:png,jpg,jpeg:max:1024',
             'password' => 'required|string|min:8',
         ]);
 
 
         try {
             $uuid = Uuid::uuid4()->toString();
-            $filename = time() . '.' . $request->image->extension();
-            $request->image->storeAs('public/verifikasi', $filename);
+            $fotoFbFilename = time() . '_fb.' . $request->foto_fb->extension();
+            $request->foto_fb->storeAs('public/foto_fb', $fotoFbFilename);
 
-            $filename2 = time() .  '.' . $request->foto->extension();
-            $request->foto->storeAs('public/foto', $filename2);
+            // Simpan foto_ig
+            $fotoIgFilename = time() . '_ig.' . $request->foto_ig->extension();
+            $request->foto_ig->storeAs('public/foto_ig', $fotoIgFilename);
 
             $user =  User::create([
                 'id' => $uuid,
                 'name' => $request->name,
-                'no_hp' => $request->no_hp,
-                'plat_no' => $request->plat_no,
-                'image' => $filename,
-                'foto'  => $filename2,
-                'roles' => 'Driver',
+                'username' => $request->username,
+                // 'plat_no' => $request->plat_no,
+                'foto_fb' => $fotoFbFilename,
+                'foto_ig'  => $fotoIgFilename,
+                'status' => 'Belum Aktif',
                 'password' => Hash::make($request->password),
+                // 'password' => Hash::make($request->password),
+                'id_type_fb' => '1',
+                'id_type_ig' => '2',
+                'id_level' => '2',
             ]);
 
             return response()->json([
@@ -112,7 +117,7 @@ class AuthController extends Controller
         //     'password' => 'required'
         // ]);
 
-        $user = \App\Models\User::where('no_hp', $request->no_hp)->first();
+        $user = \App\Models\User::where('username', $request->username)->first();
 
         if (!$user) {
             return response([
@@ -125,6 +130,13 @@ class AuthController extends Controller
             return response([
                 'message' => 'Password is wrong',
             ], 404);
+        }
+
+        if ($user->status !== 'Aktif') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Akun Anda belum aktif.',
+            ]);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;

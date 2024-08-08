@@ -63,10 +63,10 @@
 
                 <div class="form-group  ">
                     <label for="">
-                        KTP / SIM / KTA
+                        Screenshoot Facebook
                     </label>
                     <div class="col-md-12">
-                        <input type="file" class="form-control" name="image"
+                        <input type="file" class="form-control" name="foto_fb"
                             @error('image')
                             is-invalid
                         @enderror>
@@ -80,10 +80,10 @@
 
                 <div class="form-group  ">
                     <label for="">
-                      Foto Wajah
+                      Screenshoot Instagram
                     </label>
                     <div class="col-md-12">
-                        <input type="file" class="form-control" name="foto"
+                        <input type="file" class="form-control" name="foto_ig"
                             @error('foto')
                             is-invalid
                         @enderror>

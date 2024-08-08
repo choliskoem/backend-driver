@@ -30,38 +30,95 @@ class DatabaseSeeder extends Seeder
         //     'image' => 'https://picsum.photos/200/300',
         // ]);
 
+        // \App\Models\User::factory()->create([
+        //     //id_user is uuid
+        //     'id_akun' => Str::uuid(),
+        //     'name' => 'Admin Holis',
+
+        //     'id_level' => '1',
+        //     'id_type_fb' => '0',
+        //     'id_type_ig' => '0',
+        //     'foto_fb' => 'https://picsum.photos/200/300',
+        //     'foto_ig' => 'https://picsum.photos/200/300',
+        //     'username' => '0821',
+        //     'status' => 'Aktif',
+        //     'password' => Hash::make('123456789'),
+
+        // ]);
+
+        // \App\Models\User::factory()->create([
+        //     //id_user is uuid
+        //     'id' => $c,
+        //     'name' => 'Driver Ojol',
+        //     'roles' => 'Driver',
+        //     'image' => 'https://picsum.photos/200/300',
+        //     'foto' => 'https://picsum.photos/200/300',
+        //     'no_hp' => '03123131311',
+        //     'plat_no' => 'B 1235 C',
+        //     'password' => Hash::make('123456789'),
+
+        // ]);
+
+        \App\Models\Level::factory()->create([
+
+            'id_level' => '1',
+            'level' => 'Admin',
+
+
+        ]);
+        \App\Models\Level::factory()->create([
+
+            'id_level' => '2',
+            'level' => 'User',
+
+
+        ]);
+
+        \App\Models\Type::factory()->create([
+
+            'id_type' => '0',
+            'type' => '0',
+
+
+        ]);
+
+
+        \App\Models\Type::factory()->create([
+
+            'id_type' => '1',
+            'type' => 'Facebook',
+
+
+        ]);
+
+        \App\Models\Type::factory()->create([
+
+            'id_type' => '2',
+            'type' => 'Instagram',
+
+
+        ]);
+
+
         \App\Models\User::factory()->create([
             //id_user is uuid
-            'id' => Str::uuid(),
+            'id_akun' => Str::uuid(),
             'name' => 'Admin Holis',
 
-            'roles' => 'Admin',
-            'image' => 'https://picsum.photos/200/300',
-            'foto' =>'https://picsum.photos/200/300',
-            'no_hp' => '08123456789',
-            'plat_no' => 'B 1234 C',
+            'id_level' => '1',
+            'id_type_fb' => '0',
+            'id_type_ig' => '0',
+            'foto_fb' => 'https://picsum.photos/200/300',
+            'foto_ig' => 'https://picsum.photos/200/300',
+            'username' => '0821',
+            'status' => 'Aktif',
             'password' => Hash::make('123456789'),
 
         ]);
 
-        \App\Models\User::factory()->create([
-            //id_user is uuid
-            'id' => $c,
-            'name' => 'Driver Ojol',
-            'roles' => 'Driver',
-            'image' => 'https://picsum.photos/200/300',
-            'foto' =>'https://picsum.photos/200/300',
-            'no_hp' => '03123131311',
-            'plat_no' => 'B 1235 C',
-            'password' => Hash::make('123456789'),
-
-        ]);
-
-        // \App\Models\qrcode::factory()->create([
-
-        //     'id' => $b,
-
-
+        // $this->call([
+        //     LevelSeeder::class,
+        //     TypeSeeder::class,
         // ]);
     }
 }

@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('backup_drivers', function (Blueprint $table) {
-            $table->uuid('qrcode_id');
-            $table->uuid('driver_id');
-            $table->string('minggu');
-            $table->foreign('driver_id')->references('id_akun')->on('users')->onUpdate('cascade')->onDelete('restrict');
+        Schema::create('t_level', function (Blueprint $table) {
+            // $table->id('id_level');
+            $table->string('id_level')->primary();
+            $table->string('level');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('backup_drivers');
+        Schema::dropIfExists('t_level');
     }
 };

@@ -18,10 +18,12 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
     <div id="app">
+
         <section class="section">
             <div class="d-flex align-items-stretch flex-wrap">
                 <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
@@ -36,17 +38,17 @@
                         </h4>
                         <p class="text-muted">Before you get started, you must login or register if you don't already
                             have an account.</p>
-                        <form method="POST" action="{{ url('/proses_login') }}" class="needs-validation"
+                        <form id="loginForm" method="POST" action="{{ url('/proses_login') }}" class="needs-validation"
                             novalidate="">
                             @csrf
                             <div class="form-group">
                                 <label for="no_hp">Nomor HP</label>
-                                <input id="no_hp" type="no_hp"
-                                    class="form-control @error('no_hp')
+                                <input id="username" type="username"
+                                    class="form-control @error('username')
                                     is-invalid
                                     @enderror"
-                                    name="no_hp" tabindex="1" autofocus>
-                                @error('no_hp')
+                                    name="username" tabindex="1" autofocus>
+                                @error('username')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -108,6 +110,7 @@
 
             </div>
         </section>
+        @include('sweetalert::alert')
     </div>
 
     <!-- General JS Scripts -->
@@ -127,7 +130,7 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             function checkForChanges() {
                 $.ajax({
@@ -178,6 +181,50 @@
 
         // // Call checkForUpdates every 5 seconds
         // setInterval(checkForUpdates, 5000);
+    </script> --}}
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch('/proses_login', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                        'Accept': 'application/json',
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: data.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            window.location.href = '/dashboard';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: data.message
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Something went wrong!'
+                    });
+                });
+        });
     </script>
 
 

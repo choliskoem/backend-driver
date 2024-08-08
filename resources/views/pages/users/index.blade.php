@@ -64,16 +64,33 @@
 
                                             <th>Name</th>
                                             <th>Nomor HP</th>
-                                            <th>Roles</th>
+                                            <th>Level</th>
+                                            <th>Status</th>
+                                            <th>Foto FB</th>
+                                            <th>Foto IG</th>
                                             <th>Created At</th>
-                                            <th>Action</th>
+                                            <th>Hapus</th>
+                                            <th>Ubah Status</th>
                                         </tr>
 
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $user->name }}</td>
-                                                <td>{{ $user->no_hp }}</td>
-                                                <td>{{ $user->roles }}</td>
+                                                <td>{{ $user->username }}</td>
+                                                <td>{{ $user->id_level }}</td>
+                                                <td>{{ $user->status }}</td>
+                                                <td>
+                                                    <img src="{{ asset('storage/foto_fb/' . $user->foto_fb) }}"
+                                                        alt="Facebook Photo"
+                                                        style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
+                                                        onclick="window.open('{{ asset('storage/foto_fb/' . $user->foto_fb) }}', '_blank')">
+                                                </td>
+                                                <td>
+                                                    <img src="{{ asset('storage/foto_ig/' . $user->foto_ig) }}"
+                                                        alt="Instagram Photo"
+                                                        style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
+                                                        onclick="window.open('{{ asset('storage/foto_ig/' . $user->foto_ig) }}', '_blank')">
+                                                </td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
 
@@ -83,8 +100,8 @@
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a> --}}
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                            class="ml-2">
+                                                        <form action="{{ route('user.destroy', $user->id_akun) }}"
+                                                            method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
@@ -94,6 +111,18 @@
                                                             </button>
                                                         </form>
                                                     </div>
+                                                </td>
+                                                <td>
+                                                    <form id="user-form3"
+                                                        action="{{ route('user.update', $user->id_akun) }}" method="POST"
+                                                        class="ml-2">
+
+                                                        @csrf
+                                                        @method('PUT')
+
+                                                        <!-- Tidak perlu field input di sini -->
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

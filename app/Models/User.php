@@ -20,20 +20,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $keyType = 'string';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_akun';
     // public $incrementing = false;
 
 
     protected $fillable = [
-        'id',
+        'id_akun',
         'name',
-        'no_hp',
-        'plat_no',
-        'image',
-        
-        'foto',
-        'roles',
-        'password'
+        'username',
+        'password',
+        'id_level',  'id_type_fb', 'id_type_ig', 'foto_fb', 'foto_ig', 'status'
 
     ];
 
@@ -52,10 +48,10 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        // 'id' => 'string',
-        'no_hp_verified_at' => 'datetime',
-        'password' => 'hashed',
+    // protected $casts = [
+    //     // 'id' => 'string',
+    //     'no_hp_verified_at' => 'datetime',
+    //     'password' => 'hashed',
 
-    ];
+    // ];
 }

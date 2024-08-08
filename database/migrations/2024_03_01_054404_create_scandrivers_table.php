@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('qrcode_id');
             $table->uuid('driver_id');
             $table->timestamp('waktu')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreign('driver_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('driver_id')->references('id_akun')->on('users')->onUpdate('cascade')->onDelete('restrict');
             $table->timestamps();
         });
     }
