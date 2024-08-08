@@ -15,8 +15,8 @@ return new class extends Migration
             // $table->id('id_periode');
             $table->string('id_periode')->primary();
             $table->string('periode');
-            $table->timestamp('waktu_masuk');
-            $table->timestamp('waktu_selesai');
+            $table->timestamp('waktu_masuk')->nullable(false)->useCurrent();
+            $table->timestamp('waktu_selesai')->nullable(false)->useCurrent();
             $table->decimal('nominal_bayar', 15, 2);
             $table->timestamps();
         });
