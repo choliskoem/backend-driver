@@ -119,22 +119,16 @@ class AuthController extends Controller
 
         $user = \App\Models\User::where('username', $request->username)->first();
 
-        if (!$user) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
-                'message' => 'Number not found',
+                'message' => 'Nomor Hp Atau password Salah',
             ], 404);
         }
 
-        if (!Hash::check($request->password, $user->password)) {
 
-            return response([
-                'message' => 'Password is wrong',
-            ], 404);
-        }
 
         if ($user->status !== 'Aktif') {
             return response()->json([
-
                 'message' => 'Akun Anda belum aktif.',
             ], 404);
         }
