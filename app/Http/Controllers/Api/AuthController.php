@@ -134,9 +134,9 @@ class AuthController extends Controller
 
         if ($user->status !== 'Aktif') {
             return response()->json([
-                'success' => false,
+
                 'message' => 'Akun Anda belum aktif.',
-            ]);
+            ], 404);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
