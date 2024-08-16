@@ -19,17 +19,17 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         // Validasi data yang masuk
-        $request->validate([
-            // 'kd_akun' => 'required|string|max:255|unique:t_akun,kd_akun',
-            'username' => 'required|string|max:255',
-            // 'password' => 'required|string|min:8|confirmed',
-            // 'id_type_fb' => 'required|exists:t_type,id_type',
-            // 'id_type_ig' => 'required|exists:t_type,id_type',
-            // 'id_level' => 'required|exists:t_level,id_level',
-            // 'foto_fb' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'foto_ig' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'status' => 'required|boolean',
-        ]);
+        // $request->validate([
+        //     // 'kd_akun' => 'required|string|max:255|unique:t_akun,kd_akun',
+        //     'username' => 'required|string|max:255',
+        //     // 'password' => 'required|string|min:8|confirmed',
+        //     // 'id_type_fb' => 'required|exists:t_type,id_type',
+        //     // 'id_type_ig' => 'required|exists:t_type,id_type',
+        //     // 'id_level' => 'required|exists:t_level,id_level',
+        //     // 'foto_fb' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     // 'foto_ig' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     // 'status' => 'required|boolean',
+        // ]);
 
         // Generate UUID
         $uuid = Uuid::uuid4()->toString();

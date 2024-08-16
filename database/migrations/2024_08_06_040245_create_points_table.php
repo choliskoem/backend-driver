@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('t_point', function (Blueprint $table) {
             $table->string('kd_karyawan');
             $table->foreign('kd_karyawan')->references('id_akun')->on('users');
+            $table->string('kd_pembelian');
+            $table->foreign('kd_pembelian')->references('kd_pembelian')->on('t_pembelian');
             $table->timestamp('waktu');
             $table->integer('point');
             $table->timestamps();

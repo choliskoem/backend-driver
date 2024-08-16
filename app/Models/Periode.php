@@ -10,8 +10,19 @@ class Periode extends Model
     use HasFactory;
     protected $table = 't_periode';
     protected $primaryKey = 'id_periode';
+    public $incrementing = false;
 
     protected $fillable = [
-        'periode', 'waktu_masuk', 'waktu_selesai', 'nominal_bayar'
+        'id_periode',
+        'periode',
+        'waktu_masuk',
+        'waktu_selesai',
+        'nominal_bayar'
     ];
+
+
+    public function pembelians()
+    {
+        return $this->hasMany(Pembelian::class, 'id_periode', 'id_periode');
+    }
 }

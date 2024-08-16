@@ -12,5 +12,11 @@ class Point extends Model
     protected $primaryKey = 'kd_karyawan';
     public $incrementing = false;
 
-    protected $fillable = ['kd_karyawan', 'waktu', 'point'];
+    protected $fillable = ['kd_karyawan','kd_pembelian', 'waktu', 'point'];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'kd_karyawan', 'id_akun');
+    }
 }

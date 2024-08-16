@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Pembelian extends Model
 {
@@ -13,18 +14,23 @@ class Pembelian extends Model
     protected $table = 't_pembelian';
     protected $primaryKey = 'kd_pembelian';
     public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'kd_pembelian', 'id_periode', 'kd_akun', 'waktu', 'nominal_belanja'
+        'kd_pembelian',
+        'id_periode',
+        'id_akun',
+        'waktu',
+        'nominal_belanja'
     ];
 
+    // Relasi ke periode
     public function periode()
     {
-        return $this->belongsTo(Periode::class, 'id_periode');
+        return $this->belongsTo(Periode::class, 'id_periode', 'id_periode');
     }
-
-    public function akun()
+    public function user()
     {
-        return $this->belongsTo(Akun::class, 'kd_akun');
+        return $this->belongsTo(User::class, 'id_akun', 'id_akun');
     }
 }

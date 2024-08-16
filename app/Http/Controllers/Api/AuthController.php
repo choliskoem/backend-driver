@@ -212,11 +212,20 @@ class AuthController extends Controller
 
     public function drivers(Request $request)
     {
+        // $users = DB::table('users as u')
+        //     ->leftJoin('t_point as p', 'p.kd_karyawan', '=', 'u.id_akun')
+        //     ->select('u.name', DB::raw('SUM(p.point) as point'), 'u.id_akun as id')
+        //     ->groupBy('u.name', 'u.id_akun')
+        //     ->where('u.id_akun', $request->id)
+        //     ->first();
+
+
         $users = DB::table('users as u')
-            ->leftJoin('scandrivers as s', 's.driver_id', '=', 'u.id')
-            ->select('u.name', DB::raw('COUNT(s.driver_id) as point'), 'u.id')
-            ->groupBy('u.name', 'u.id')
-            ->where('u.id', $request->id)
+            ->leftJoin('t_pembelian as pp', 'pp.id_akun', '=', 'u.id_akun')
+            ->leftJoin('t_point as p', 'p.kd_pembelian', '=', 'pp.kd_pembelian')
+            ->select('u.name', DB::raw('SUM(p.point) as point'), 'u.id_akun as id')
+            ->groupBy('u.name', 'u.id_akun')
+            ->where('u.id_akun', $request->id)
             ->first();
 
 
@@ -234,9 +243,7 @@ class AuthController extends Controller
             ], 404);
         }
     }
-    public function refresh(Request $request)
-    {
-    }
+    public function refresh(Request $request) {}
 
     public function hasildriver(Request $request)
     {

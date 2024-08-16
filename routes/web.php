@@ -4,8 +4,11 @@ use App\Http\Controllers\BackupController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Models\Pembelian;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user', UserController::class);
     Route::resource('driver', DriverController::class);
     Route::resource('backup', BackupController::class);
+    Route::resource('pembelian', PembelianController::class);
+    Route::resource('periode', PeriodeController::class);
+
+
 });
