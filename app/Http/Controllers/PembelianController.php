@@ -17,7 +17,12 @@ class PembelianController extends Controller
     public function index()
     {
         $periodes = Periode::all();
-        $users = User::all();
+        // $users = User::all();
+        $users = DB::table('users')
+            ->where('id_level', '2')
+            ->get();
+
+
         return view('pages.pembelian.index', compact('periodes', 'users'));
     }
 
