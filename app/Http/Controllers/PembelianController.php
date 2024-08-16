@@ -7,6 +7,7 @@ use App\Models\Periode;
 use App\Models\Point;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
@@ -51,7 +52,7 @@ class PembelianController extends Controller
         if ($points > 0) {
             // Insert data poin
             DB::table('t_point')->insert([
-                'kd_karyawan' => $request->id_akun,
+                'kd_karyawan' => Auth::user()->id_akun,
                 'kd_pembelian' => $kd_pembelian,
                 'waktu' => now(),
                 'point' => $points,

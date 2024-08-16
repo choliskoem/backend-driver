@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PeriodeController;
+use App\Http\Controllers\PointController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Models\Pembelian;
@@ -42,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('backup', BackupController::class);
     Route::resource('pembelian', PembelianController::class);
     Route::resource('periode', PeriodeController::class);
+    Route::resource('point', PointController::class);
+
 
 
 });
