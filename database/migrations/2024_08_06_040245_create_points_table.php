@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('kd_pembelian');
             $table->foreign('kd_pembelian')->references('kd_pembelian')->on('t_pembelian');
             $table->timestamp('waktu');
-            $table->integer('point');
+            $table->string('point');
             $table->timestamps();
         });
     }
