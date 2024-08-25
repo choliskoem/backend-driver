@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UndianController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\RouletteController;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ Route::get('checkqr', [AuthController::class, 'checkqr']);
 Route::post('addlogin', [App\Http\Controllers\Api\AuthController::class, 'store']);
 Route::post('addscanner', [App\Http\Controllers\Api\AuthController::class, 'scanner'])->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->get('/undian/nomor', [RouletteController::class, 'getNomorUndianByUser']);
+Route::middleware('auth:sanctum')->get('/undian/nomor', [UndianController::class, 'getNomorUndianByUser']);
 
 //post logout
 Route::post('logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->middleware('auth:sanctum');
