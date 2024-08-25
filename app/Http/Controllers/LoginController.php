@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -87,5 +89,30 @@ class LoginController extends Controller
     {
 
         return view('welcome');
+    }
+    public function changePassword(Request $request)
+    {
+        // Validasi input
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        // Cek apakah kata sandi saat ini cocok
+        if (!Hash::check($request->current_password, Auth::user()->password)) {
+            return back()->withErrors(['error' => 'Kata sandi saat ini salah.']);
+        }
+
+        // Update kata sandi
+        $user = Auth::user();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        // return redirect()->back()->with('success', 'Data berhasil disimpan!');
+        return redirect()->route('home')->with('success', 'Kata sandi berhasil diubah.');
     }
 }
