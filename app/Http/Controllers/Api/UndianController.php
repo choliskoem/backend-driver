@@ -25,7 +25,8 @@ class UndianController extends Controller
 
         // Kembalikan data dalam format JSON
         return response()->json([
-            'status' => 'success',
+            'success' => true,
+            'message' => 'List of udian',
             'data' => $nomorUndian
         ], 200);
     }
