@@ -118,6 +118,6 @@ class LoginController extends Controller
         $user->save();
 
         // return redirect()->back()->with('success', 'Data berhasil disimpan!');
-        return redirect()->route('home')->with('success', 'Kata sandi berhasil diubah.');
+        return redirect()->route('dashboard')->with('success', 'Kata sandi berhasil diubah.');
     }
 }
