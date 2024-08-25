@@ -51,9 +51,6 @@ class PembelianController extends Controller
         // Menghitung poin yang didapatkan
         $points = floor($request->nominal_belanja / 50000);
 
-
-        // $periodes = Periode::all();
-
         if ($points > 0) {
             // Insert data poin
             DB::table('t_point')->insert([
@@ -62,8 +59,22 @@ class PembelianController extends Controller
                 'waktu' => now(),
                 'point' => $points,
             ]);
+
+            // Menentukan nomor undian terakhir yang ada di tabel undian
+            $lastUndianNumber = DB::table('t_undian')->max('nomor_undian') ?? 0;
+
+            // Insert nomor undian untuk setiap poin yang didapatkan
+            for ($i = 1; $i <= $points; $i++) {
+                DB::table('t_undian')->insert([
+                    'kd_undian' => Uuid::uuid4()->toString(),
+                    'id_akun' => $request->id_akun,
+                    'nomor_undian' => $lastUndianNumber + $i,
+                    'kd_pembelian' => $kd_pembelian,
+                    'waktu' => now(),
+                ]);
+            }
         }
 
-        return redirect()->route('pembelian.index')->with('success', 'Pembelian berhasil dibuat. Anda mendapatkan ' . $points . ' poin.');
+        return redirect()->route('pembelian.index')->with('success', 'Pembelian berhasil dibuat. Anda mendapatkan ' . $points . ' poin dan ' . $points . ' nomor undian.');
     }
 }
