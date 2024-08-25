@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             //id_user is uuid
             'id_akun' => Str::uuid(),
-            'name' => 'Admin Holis',
+            'name' => 'Admin Dapoer Dindra',
 
             'id_level' => '1',
             'id_type_fb' => '0',
