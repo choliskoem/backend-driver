@@ -90,6 +90,11 @@ class LoginController extends Controller
 
         return view('welcome');
     }
+
+    public function showChangePasswordForm()
+    {
+        return view('pages.auth.reset');
+    }
     public function changePassword(Request $request)
     {
         // Validasi input
