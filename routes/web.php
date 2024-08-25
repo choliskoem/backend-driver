@@ -38,6 +38,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('password/change', [LoginController::class, 'showChangePasswordForm'])->name('password.change');
+    Route::post('password/change', [LoginController::class, 'changePassword'])->name('password.update');
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::resource('user', UserController::class);
     Route::resource('driver', DriverController::class);
