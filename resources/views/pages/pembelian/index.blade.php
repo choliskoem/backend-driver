@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="id_akun">ID Akun:</label>
-                                    <select class="form-control" id="id_akun" name="id_akun" required>
+                                    <select class="form-control select2" id="id_akun" name="id_akun" required>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id_akun }}">{{ $user->name }}</option>
                                         @endforeach
