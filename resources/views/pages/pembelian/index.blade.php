@@ -38,7 +38,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="id_periode">ID Periode:</label>
-                                    <select class="form-control" id="id_periode" name="id_periode" required>
+                                    <select class="form-control select2" id="id_periode" name="id_periode" required>
                                         @foreach ($periodes as $periode)
                                             <option value="{{ $periode->id_periode }}">{{ $periode->periode }}</option>
                                         @endforeach
