@@ -116,6 +116,22 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        \App\Models\User::factory()->create([
+            //id_user is uuid
+            'id_akun' => Str::uuid(),
+            'name' => 'Irwan Karim',
+
+            'id_level' => '1',
+            'id_type_fb' => '0',
+            'id_type_ig' => '0',
+            'foto_fb' => 'https://picsum.photos/200/300',
+            'foto_ig' => 'https://picsum.photos/200/300',
+            'username' => 'adminDD',
+            'status' => 'Aktif',
+            'password' => Hash::make('123456789'),
+
+        ]);
+
         // $this->call([
         //     LevelSeeder::class,
         //     TypeSeeder::class,
