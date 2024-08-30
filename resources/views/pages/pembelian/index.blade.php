@@ -48,7 +48,9 @@
                                     <label for="id_akun">ID Akun:</label>
                                     <select class="form-control select2" id="id_akun" name="id_akun" required>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id_akun }}">{{ $user->name }}</option>
+                                            <option value="{{ $user->id_akun }}">{{ $user->username }} -
+                                                {{ $user->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
