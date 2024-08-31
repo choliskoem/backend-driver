@@ -22,8 +22,9 @@ class PembelianController extends Controller
             ->where('id_level', '2')
             ->get();
 
+        $sum = DB::table('t_pembelian')->sum('nominal_belanja');
 
-        return view('pages.pembelian.index', compact('periodes', 'users'));
+        return view('pages.pembelian.index', compact('periodes', 'users', 'sum'));
     }
 
 

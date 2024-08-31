@@ -9,6 +9,7 @@ use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RouletteController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Models\Pembelian;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pembelian', PembelianController::class);
     Route::resource('periode', PeriodeController::class);
     Route::resource('point', PointController::class);
+    Route::resource('transaksi', TransaksiController::class);
+
     Route::get('/roulette', [RouletteController::class, 'index'])->name('roulette.index');
     Route::post('/roulette/spin', [RouletteController::class, 'spin'])->name('roulette.spin');
 });

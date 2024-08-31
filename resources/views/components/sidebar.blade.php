@@ -46,6 +46,16 @@
                 </ul>
             </li>
 
+            {{-- <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transaksi</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link" href="{{ route('transaksi.index') }}">All Transaksi</a>
+                    </li>
+
+                </ul>
+            </li> --}}
+
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Users</span></a>
                 <ul class="dropdown-menu">

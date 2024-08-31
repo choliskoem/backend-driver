@@ -60,7 +60,11 @@
                                         required>
                                 </div>
                                 <input type="hidden" name="waktu" value="{{ now() }}">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="d-flex align-items-center">
+                                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                    <p class="mb-0 ml-auto"><strong>Rp. {{ number_format($sum, 0, ',', '.') }}</strong></p>
+                                </div>
+
                             </form>
                         </div>
                     </div>
