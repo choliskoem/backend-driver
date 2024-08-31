@@ -111,7 +111,7 @@ class UndianController extends Controller
         $user = Auth::user();
 
         // Ambil nomor undian yang dimenangkan oleh pengguna ini
-        $nomorUndian = DB::table('t_periode');
+        $nomorUndian = DB::table('t_periode')->get();
 
         // Kembalikan data dalam format JSON
         return response()->json([
