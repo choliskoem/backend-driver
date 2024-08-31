@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UndianController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\RouletteController;
+use App\Models\Undian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::get('driver/{id}', [AuthController::class, 'drivers'])->middleware('auth:sanctum');
 Route::get('hasildriver', [AuthController::class, 'hasildriver']);
+Route::get('periode', [App\Http\Controllers\Api\UndianController::class, 'periode']);
+
 
 Route::get('checkqr', [AuthController::class, 'checkqr']);
 Route::post('addlogin', [App\Http\Controllers\Api\AuthController::class, 'store']);

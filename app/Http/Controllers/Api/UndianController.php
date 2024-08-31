@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Periode;
 use App\Models\Undian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,6 +100,23 @@ class UndianController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'List of udian',
+            'data' => $nomorUndian
+        ], 200);
+    }
+
+
+    public function periode(Request $request)
+    {
+        // Ambil pengguna yang sedang terautentikasi
+        $user = Auth::user();
+
+        // Ambil nomor undian yang dimenangkan oleh pengguna ini
+        $nomorUndian = DB::table('t_periode');
+
+        // Kembalikan data dalam format JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'List of periode',
             'data' => $nomorUndian
         ], 200);
     }
