@@ -27,7 +27,7 @@ class UndianController extends Controller
         try {
             // Create UUID for kd_pembelian
             $kd_pembelian = Uuid::uuid4()->toString();
-
+            
             // Insert data into t_pembelian table
             DB::table('t_pembelian')->insert([
                 'kd_pembelian' => $kd_pembelian,
