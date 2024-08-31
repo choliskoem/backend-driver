@@ -20,19 +20,19 @@ class UndianController extends Controller
         // Validate request data
         $validatedData = $request->validate([
             'id_periode' => 'required|string|exists:t_periode,id_periode',
-            'id_akun' => 'required|string|exists:users,id_akun',
+            // 'id_akun' => 'required|string|exists:users,id_akun',
             'nominal_belanja' => 'required|numeric|min:0',
         ]);
 
         try {
             // Create UUID for kd_pembelian
             $kd_pembelian = Uuid::uuid4()->toString();
-            
+
             // Insert data into t_pembelian table
             DB::table('t_pembelian')->insert([
                 'kd_pembelian' => $kd_pembelian,
                 'id_periode' => $validatedData['id_periode'],
-                'id_akun' => $validatedData['id_akun'],
+                'id_akun' => $request->user()->id_akun,
                 'waktu' => now(),
                 'nominal_belanja' => $validatedData['nominal_belanja'],
             ]);
