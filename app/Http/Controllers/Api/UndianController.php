@@ -20,7 +20,7 @@ class UndianController extends Controller
         // Validate request data
         $validatedData = $request->validate([
             'id_periode' => 'required|string|exists:t_periode,id_periode',
-            // 'id_akun' => 'required|string|exists:users,id_akun',
+            'id_akun' => 'required|string|exists:users,id_akun',
             'nominal_belanja' => 'required|numeric|min:0',
         ]);
 
@@ -32,7 +32,7 @@ class UndianController extends Controller
             DB::table('t_pembelian')->insert([
                 'kd_pembelian' => $kd_pembelian,
                 'id_periode' => $validatedData['id_periode'],
-                'id_akun' => $request->id_akun,
+                'id_akun' => $validatedData['id_akun'],
                 'waktu' => now(),
                 'nominal_belanja' => $validatedData['nominal_belanja'],
             ]);
