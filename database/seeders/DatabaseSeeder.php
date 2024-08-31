@@ -128,7 +128,7 @@ class DatabaseSeeder extends Seeder
             'foto_ig' => 'https://picsum.photos/200/300',
             'username' => 'adminDD2',
             'status' => 'Aktif',
-            'password' => Hash::make('Sagwla0123.'),
+            'password' => Hash::make('Sagela0123.'),
 
         ]);
 
