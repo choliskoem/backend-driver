@@ -35,4 +35,4 @@ Route::middleware('auth:sanctum')->get('/undian/nomor', [UndianController::class
 //post logout
 Route::post('logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::post('/pembelian', [UndianController::class, 'store']);
+Route::post('/pembelian', [UndianController::class, 'store'])->middleware('auth:sanctum');
