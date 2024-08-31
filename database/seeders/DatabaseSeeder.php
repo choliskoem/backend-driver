@@ -110,9 +110,9 @@ class DatabaseSeeder extends Seeder
             'id_type_ig' => '0',
             'foto_fb' => 'https://picsum.photos/200/300',
             'foto_ig' => 'https://picsum.photos/200/300',
-            'username' => '0821',
+            'username' => 'adminDD',
             'status' => 'Aktif',
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('Sagela0123.'),
 
         ]);
 
@@ -126,9 +126,9 @@ class DatabaseSeeder extends Seeder
             'id_type_ig' => '0',
             'foto_fb' => 'https://picsum.photos/200/300',
             'foto_ig' => 'https://picsum.photos/200/300',
-            'username' => 'adminDD',
+            'username' => 'adminDD2',
             'status' => 'Aktif',
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('Sagwla0123.'),
 
         ]);
 
