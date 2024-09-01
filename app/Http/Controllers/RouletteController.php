@@ -34,8 +34,20 @@ class RouletteController extends Controller
             return redirect()->route('roulette.index')->with('error', 'Tidak ada data undian yang tersedia.');
         }
 
-        // Memilih nomor undian secara acak
-        $winner = $nomorUndians->random();
+        // Mendapatkan semua id_akun yang sudah memiliki nomor undian keluar
+        $excludedAccounts = Undian::where('status', true)->pluck('id_akun')->unique();
+
+        // Menyaring nomor undian berdasarkan id_akun yang belum memiliki nomor keluar
+        $eligibleUndians = $nomorUndians->filter(function ($undian) use ($excludedAccounts) {
+            return !$excludedAccounts->contains($undian->id_akun);
+        });
+
+        if ($eligibleUndians->isEmpty()) {
+            return redirect()->route('roulette.index')->with('error', 'Tidak ada data undian yang memenuhi kriteria.');
+        }
+
+        // Memilih nomor undian secara acak dari nomor yang memenuhi kriteria
+        $winner = $eligibleUndians->random();
 
         // Menandai nomor undian sebagai sudah keluar
         $winner->status = true;
