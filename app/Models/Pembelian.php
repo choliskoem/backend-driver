@@ -33,4 +33,6 @@ class Pembelian extends Model
     {
         return $this->belongsTo(User::class, 'id_akun', 'id_akun');
     }
+
+ 
 }

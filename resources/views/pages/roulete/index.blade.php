@@ -107,7 +107,9 @@
                     <div class="nomor-undian-list">
                         <h2>Daftar Nomor Undian</h2>
                         @forelse($nomorUndians as $nomorUndian)
-                            <div class="nomor-undian-item">{{ $nomorUndian->nomor_undian }}</div>
+                            <div class="nomor-undian-item">
+                                {{ $nomorUndian->nomor_undian }}
+                            </div>
                         @empty
                             <p class="text-muted">Tidak ada nomor undian yang tersedia.</p>
                         @endforelse

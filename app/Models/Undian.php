@@ -45,4 +45,9 @@ class Undian extends Model
     {
         return $this->belongsTo(Pembelian::class, 'kd_pembelian', 'kd_pembelian');
     }
+
+    public function pemenangs()
+    {
+        return $this->hasMany(Pemenang::class, 'kd_undian');
+    }
 }
