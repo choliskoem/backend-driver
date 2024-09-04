@@ -233,6 +233,7 @@ class AuthController extends Controller
             ->leftJoin('t_pembelian as pp', 'pp.id_akun', '=', 'u.id_akun')
             ->leftJoin('t_point as p', 'p.kd_pembelian', '=', 'pp.kd_pembelian')
             ->select('u.name', DB::raw('COALESCE(SUM(p.point), 0) as point'), 'u.id_akun as id')
+            ->groupBy('u.name', 'u.id_akun')
             ->where('u.id_akun', $request->id)
             ->first();
 
