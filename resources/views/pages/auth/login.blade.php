@@ -30,7 +30,7 @@
                     <div class="m-3 p-4">
                         <div class="d-flex justify-content-between"> <img src="{{ asset('img/logo-toko.png   ') }}"
                                 alt="logo" width="100" class="  mb-5 mt-2">
-                            <p>{{ $qrCode }}</p>
+                            <a href="{{ route('syarat') }}">Syarat & Ketentuan</a>
                         </div>
 
                         <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Dapoer

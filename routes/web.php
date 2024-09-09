@@ -9,6 +9,7 @@ use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\PointController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RouletteController;
+use App\Http\Controllers\SyaratController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Models\Pembelian;
@@ -37,6 +38,9 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/proses_login', [LoginController::class, 'proses_login']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/syarat-ketentuan', [SyaratController::class, 'index'])->name('syarat');
+
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('password/change', [LoginController::class, 'showChangePasswordForm'])->name('password.change');
