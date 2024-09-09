@@ -30,7 +30,7 @@
                     <div class="m-3 p-4">
                         <div class="d-flex justify-content-between"> <img src="/img/logo-toko.png" alt="logo"
                                 width="100" class="  mb-5 mt-2">
-                            <a href="{{ route('syarat') }}">Syarat & Ketentuan</a>
+                            <a href="/syarat">Syarat & Ketentuan</a>
                         </div>
 
                         <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Dapoer
@@ -78,7 +78,7 @@
                                 </button>
                             </div>
                             <div class="mt-5 text-center">
-                                Don't have an account? <a href="{{ route('register') }}">Create One</a>
+                                Don't have an account? <a href="/register">Create One</a>
                             </div>
                         </form>
 
