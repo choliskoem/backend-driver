@@ -4,12 +4,12 @@
 
 @push('style')
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
+    <link rel="stylesheet" href="/library/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="/library/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="/library/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="/library/selectric/public/selectric.css">
+    <link rel="stylesheet" href="/library/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" href="/library/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 
     <!-- Custom CSS for Roulette -->
     <style>
@@ -122,21 +122,21 @@
 
 @push('scripts')
     <!-- JS Libraries -->
-    <script src="{{ asset('library/sweetalert/dist/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('library/cleave.js/dist/cleave.min.js') }}"></script>
-    <script src="{{ asset('library/cleave.js/dist/addons/cleave-phone.us.js') }}"></script>
-    <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('library/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') }}"></script>
-    <script src="{{ asset('library/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('library/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
-    <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
-    <script src="{{ asset('library/izitoast/dist/js/iziToast.min.js') }}"></script>
+    <script src="/library/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/library/cleave.js/dist/cleave.min.js"></script>
+    <script src="/library/cleave.js/dist/addons/cleave-phone.us.js"></script>
+    <script src="/library/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/library/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <script src="/library/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+    <script src="/library/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="/library/select2/dist/js/select2.full.min.js"></script>
+    <script src="/library/selectric/public/jquery.selectric.min.js"></script>
+    <script src="/library/izitoast/dist/js/iziToast.min.js"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/modules-toastr.js') }}"></script>
-    <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
-    <script src="{{ asset('js/page/bootstrap-modal.js') }}"></script>
+    <script src="/js/page/modules-toastr.js"></script>
+    <script src="/js/page/forms-advanced-forms.js"></script>
+    <script src="/js/page/bootstrap-modal.js"></script>
 
     <script>
         @if (Session::has('success'))

@@ -13,7 +13,7 @@
         </div>
 
         <div class="card-body">
-           
+
             {{-- <p class="text-muted">We will send a link to reset your password</p> --}}
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf
@@ -61,8 +61,8 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    <script src="{{ asset('library/jquery.pwstrength/jquery.pwstrength.min.js') }}"></script>
+    <script src="/library/jquery.pwstrength/jquery.pwstrength.min.js"></script>
 
     <!-- Page Specific JS File -->
-    <script src="{{ asset('js/page/auth-register.js') }}"></script>
+    <script src="/js/page/auth-register.js"></script>
 @endpush

@@ -12,7 +12,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('dashboard') }}">Genera Dashboard</a>
+                        <a class="nav-link" href="/dashboard">Genera Dashboard</a>
                     </li>
 
                 </ul>
@@ -21,7 +21,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Pembelian</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('pembelian.index') }}">All Pembelian</a>
+                        <a class="nav-link" href="/pembelian.index">All Pembelian</a>
                     </li>
 
                 </ul>
