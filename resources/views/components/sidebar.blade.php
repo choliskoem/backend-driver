@@ -31,7 +31,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Periode</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('periode.index') }}">All Periode</a>
+                        <a class="nav-link" href="/periode">All Periode</a>
                     </li>
 
                 </ul>
@@ -40,7 +40,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Point</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('point.index') }}">All Point</a>
+                        <a class="nav-link" href="/point">All Point</a>
                     </li>
 
                 </ul>
@@ -50,7 +50,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transaksi</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('transaksi.index') }}">All Transaksi</a>
+                        <a class="nav-link" href="/transaksi">All Transaksi</a>
                     </li>
 
                 </ul>
@@ -60,7 +60,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Users</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('user.index') }}">All Users</a>
+                        <a class="nav-link" href="/user">All Users</a>
                     </li>
 
                 </ul>
@@ -70,7 +70,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Undian</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('roulette.index') }}">All Users</a>
+                        <a class="nav-link" href="/roulette">All Users</a>
                     </li>
 
                 </ul>
@@ -79,7 +79,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Driver</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('driver.index') }}">All Drivers</a>
+                        <a class="nav-link" href="/driver">All Drivers</a>
                     </li>
 
                 </ul>
@@ -88,7 +88,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Backup</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('backup.index') }}">All Backup</a>
+                        <a class="nav-link" href="/backup">All Backup</a>
                     </li>
 
                 </ul>
@@ -97,7 +97,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Management</span></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="{{ route('option.index') }}">All Options</a>
+                        <a class="nav-link" href="/option.index') }}">All Options</a>
                     </li>
                     <li>
                         <a class="nav-link" href="{{ route('category.index') }}">All Categories</a>
