@@ -116,12 +116,12 @@
                                                     </div>
                                                 </td>
                                                 <td>
-
+                                                    @csrf
+                                                    @method('PUT')
                                                     <form id="user-form3" action="/user/update/{{ $user->id_akun }}"
-                                                        method="POST" class="ml-2">
+                                                        method="PUT" class="ml-2">
 
-                                                        @csrf
-                                                        @method('PUT')
+
 
                                                         <!-- Tidak perlu field input di sini -->
                                                         <button type="submit" class="btn btn-primary">Update</button>
