@@ -114,7 +114,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <form id="user-form3" action="/user/update/{{ $user->id_akun }}"
+                                                    <form id="user-form3" action="/user/{{ $user->id_akun }}"
                                                         method="POST" class="ml-2">
 
                                                         @csrf
