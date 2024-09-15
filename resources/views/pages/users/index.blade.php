@@ -86,10 +86,11 @@
                                                         onclick="window.open('/storage/foto_fb/{{ $user->foto_fb }}', '_blank')">
                                                 </td>
                                                 <td>
-                                                    <img src="{{ asset('storage/foto_ig/' . $user->foto_ig) }}"
-                                                        alt="Instagram Photo"
-                                                        style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
-                                                        onclick="window.open('{{ url('storage/foto_ig/' . $user->foto_ig) }}', '_blank')">
+                                                    <img src="/storage/foto_ig/{{ $user->foto_ig }}" alt="Instagram Photo"
+                                                        width="50" class="mb-5 mt-2"
+                                                        style="object-fit: cover; cursor: pointer;"
+                                                        onclick="window.open('/storage/foto_ig/{{ $user->foto_ig }}', '_blank')">
+
                                                 </td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
