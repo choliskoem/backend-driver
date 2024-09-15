@@ -83,13 +83,13 @@
                                                     <img src="{{ asset('storage/foto_fb/' . $user->foto_fb) }}"
                                                         alt="Facebook Photo"
                                                         style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
-                                                        onclick="window.open('{{ asset('storage/foto_fb/' . $user->foto_fb) }}', '_blank')">
+                                                        onclick="window.open('{{ url('storage/foto_fb/' . $user->foto_fb) }}', '_blank')">
                                                 </td>
                                                 <td>
                                                     <img src="{{ asset('storage/foto_ig/' . $user->foto_ig) }}"
                                                         alt="Instagram Photo"
                                                         style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
-                                                        onclick="window.open('{{ asset('storage/foto_ig/' . $user->foto_ig) }}', '_blank')">
+                                                        onclick="window.open('{{ url('storage/foto_ig/' . $user->foto_ig) }}', '_blank')">
                                                 </td>
                                                 <td>{{ $user->created_at }}</td>
                                                 <td>
@@ -100,8 +100,10 @@
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a> --}}
-                                                        <form action="{{ route('user.destroy', $user->id_akun) }}"
-                                                            method="POST" class="ml-2">
+                                                        <form action="/user/destroy/{{ $user->id_akun }}" method="POST"
+                                                            class="ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
@@ -113,9 +115,9 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <form id="user-form3"
-                                                        action="{{ route('user.update', $user->id_akun) }}" method="POST"
-                                                        class="ml-2">
+
+                                                    <form id="user-form3" action="/user/update/{{ $user->id_akun }}"
+                                                        method="POST" class="ml-2">
 
                                                         @csrf
                                                         @method('PUT')

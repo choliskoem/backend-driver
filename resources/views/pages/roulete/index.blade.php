@@ -98,7 +98,7 @@
                     @endif
 
                     <!-- Form untuk memutar roulette -->
-                    <form action="{{ route('roulette.spin') }}" method="POST">
+                    <form action="/roulette/spin" method="POST">
                         @csrf
                         <button type="submit" class="spin-button">Putar Roulette</button>
                     </form>
