@@ -80,10 +80,10 @@
                                                 <td>{{ $user->id_level }}</td>
                                                 <td>{{ $user->status }}</td>
                                                 <td>
-                                                    <img src="{{ asset('storage/foto_fb/' . $user->foto_fb) }}"
-                                                        alt="Facebook Photo"
-                                                        style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
-                                                        onclick="window.open('{{ url('storage/foto_fb/' . $user->foto_fb) }}', '_blank')">
+                                                    <img src='/storage/foto_fb/' . $user->foto_fb"
+                                                    alt="Facebook Photo"
+                                                    style="width: 50px; height: 50px; object-fit: cover; cursor: pointer;"
+                                                    onclick="window.open('{{ url('storage/foto_fb/' . $user->foto_fb) }}', '_blank')">
                                                 </td>
                                                 <td>
                                                     <img src="{{ asset('storage/foto_ig/' . $user->foto_ig) }}"
