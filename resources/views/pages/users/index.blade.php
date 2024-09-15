@@ -101,8 +101,9 @@
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a> --}}
-                                                        <form action="{{ route('user.destroy', $user->id_akun) }}"
-                                                            method="POST" class="ml-2">
+                                                        <form action="/user/{{ $user->id_akun }}" method="POST" class="ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}">
