@@ -100,8 +100,14 @@
                     <!-- Form untuk memutar roulette -->
                     <form action="/roulette/spin" method="POST">
                         @csrf
-                        <button type="submit" class="spin-button">Putar Roulette</button>
+                        <button type="submit" class="spin-button" {{ !$isPeriodeSelesai ? 'disabled' : '' }}>
+                            Putar Roulette
+                        </button>
                     </form>
+
+                    @if (!$isPeriodeSelesai)
+                        <p class="text-warning">Roulette belum dapat diputar karena periode belum selesai.</p>
+                    @endif
 
                     <!-- Menampilkan daftar nomor undian yang belum keluar -->
                     <div class="nomor-undian-list">
