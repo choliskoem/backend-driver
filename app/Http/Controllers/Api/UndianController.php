@@ -28,6 +28,7 @@ class UndianController extends Controller
         try {
             // Create UUID for kd_pembelian
             $kd_pembelian = Uuid::uuid4()->toString();
+            // $id_periode = $request->id_periode;
 
             // Insert data into t_pembelian table
             DB::table('t_pembelian')->insert([
@@ -51,7 +52,15 @@ class UndianController extends Controller
                 ]);
 
                 // Get the last lottery number from t_undian table
-                $lastUndianNumber = DB::table('t_undian')->max('nomor_undian') ?? 0;
+                $lastUndianNumber = DB::table('t_undian')
+                    ->join('t_pembelian', 't_undian.kd_pembelian', '=', 't_pembelian.kd_pembelian')
+                    ->where('t_pembelian.id_periode', $validatedData['id_periode'])
+                    ->max('nomor_undian');
+
+                // Jika tidak ada nomor undian, mulai dari 0
+                if (is_null($lastUndianNumber)) {
+                    $lastUndianNumber = 0;
+                }
 
                 // Insert lottery number for each point earned
                 for ($i = 1; $i <= $points; $i++) {

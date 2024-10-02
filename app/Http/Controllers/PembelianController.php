@@ -39,11 +39,12 @@ class PembelianController extends Controller
 
         // Membuat UUID untuk kd_pembelian
         $kd_pembelian = Uuid::uuid4()->toString();
+        $id_periode = $request->id_periode;
 
         // Insert data pembelian
         DB::table('t_pembelian')->insert([
             'kd_pembelian' => $kd_pembelian,
-            'id_periode' => $request->id_periode,
+            'id_periode' => $id_periode,
             'id_akun' => $request->id_akun,
             'waktu' => now(),
             'nominal_belanja' => $request->nominal_belanja,
@@ -61,8 +62,15 @@ class PembelianController extends Controller
                 'point' => $points,
             ]);
 
-            // Menentukan nomor undian terakhir yang ada di tabel undian
-            $lastUndianNumber = DB::table('t_undian')->max('nomor_undian') ?? 0;
+            $lastUndianNumber = DB::table('t_undian')
+                ->join('t_pembelian', 't_undian.kd_pembelian', '=', 't_pembelian.kd_pembelian')
+                ->where('t_pembelian.id_periode', $id_periode)
+                ->max('nomor_undian');
+
+            // Jika tidak ada nomor undian, mulai dari 0
+            if (is_null($lastUndianNumber)) {
+                $lastUndianNumber = 0;
+            }
 
             // Insert nomor undian untuk setiap poin yang didapatkan
             for ($i = 1; $i <= $points; $i++) {
