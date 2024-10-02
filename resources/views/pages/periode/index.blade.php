@@ -33,7 +33,7 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form action="{{ route('periode.store') }}" method="POST">
+                            <form action="{{ url('/periode') }}" method="POST">
                                 @csrf
                                 {{-- <div class="form-group">
                                     <label for="id_periode">ID Periode</label>
